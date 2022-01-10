@@ -1,2 +1,2 @@
 # Gestion-de-Cursos
-Pequeño CRUD para gestionar asignaturas
+El proyecto consiste en un pequeño CRUD para gestionar asignaturas, el proyecto utiliza tecnologias como Django y Bootstrap.
