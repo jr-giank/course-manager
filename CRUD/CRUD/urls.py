@@ -23,5 +23,7 @@ from Home import views as home_views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('prueba/', home_views.home),
+    path('signup/', home_views.SignUp, name='signup'),
+    path('login/', home_views.Login, name='login'),
+
 ]
