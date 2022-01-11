@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
+from django.forms import widgets
 
 class SignUpForm(forms.Form):
 
@@ -100,3 +101,24 @@ class SignUpForm(forms.Form):
         user = User.objects.create_user(**data)
 
         
+class LoginForm(forms.Form):
+
+    username = forms.CharField(
+        max_length=35,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'required': True
+            }
+        )
+    )
+
+    password = forms.CharField(
+        max_length=20,
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'required': True
+            }
+        )
+    )

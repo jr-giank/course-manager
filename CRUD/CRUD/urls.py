@@ -25,5 +25,5 @@ urlpatterns = [
 
     path('signup/', home_views.SignUp, name='signup'),
     path('login/', home_views.Login, name='login'),
-
+    path('home/', home_views.Home, name='home'),
 ]
