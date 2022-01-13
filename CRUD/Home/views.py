@@ -10,19 +10,6 @@ from Home.models import Cursos
 from Home.forms import SignUpForm, LoginForm
 
 # Create your views here.
-def SignUp(request):
-
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = SignUpForm()
-
-    return render(request, 'SignUp.html', {'form':form})
-
 def Login(request):
 
     if request.method == 'POST':
@@ -44,6 +31,19 @@ def Login(request):
 
     return render(request, 'login.html', {'form':form })
 
+def SignUp(request):
+
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = SignUpForm()
+
+    return render(request, 'SignUp.html', {'form':form})
+
 @login_required
 def Logout(request):
 
@@ -57,3 +57,7 @@ def Home(request):
     asignaturas = Cursos.objects.all()
 
     return render(request, 'home.html', {'asignaturas':asignaturas})
+
+def Agregar(request):
+
+    return render(request, 'agregar.html')

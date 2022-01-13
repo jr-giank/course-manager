@@ -9,10 +9,13 @@
 
 {% block container %}
 
-    <div class="container">
+    {% include 'nav.html' %} 
+
+    <div class="container mt-5">
         <div class="row justify-content-md-center">
             <div class="col-8">
-                <table class="table table-light">
+                <h3 class="text-center mb-4">Listado de Materias</h3>
+                <table class="table table-light table-striped rounded-2">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">#</th>
@@ -35,6 +38,8 @@
                     
                     </tbody>
                 </table>
+
+                <button class="btn mt-3 col-2 offset-1 bg-primary text-white"><a class="text-white page-link bg-primary border-0" href="{% url 'agregar' %}">Agregar</a></button>
             </div>
         </div>
     </div>

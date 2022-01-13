@@ -26,4 +26,6 @@ urlpatterns = [
     path('signup/', home_views.SignUp, name='signup'),
     path('login/', home_views.Login, name='login'),
     path('home/', home_views.Home, name='home'),
+    path('logout/', home_views.Logout, name='logout'),
+    path('agregar/', home_views.Agregar, name='agregar')
 ]
