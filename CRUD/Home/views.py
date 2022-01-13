@@ -4,6 +4,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from Home.models import Cursos
 
 #Importaciones locales
 from Home.forms import SignUpForm, LoginForm
@@ -35,12 +36,13 @@ def Login(request):
 
             if user is not None:
                 login(request, user)
-
                 return redirect('home')
+            else:
+                return render(request, 'login.html', {'form':form, 'error':'User or password incorrect'})
     else:
         form = LoginForm()
 
-    return render(request, 'login.html', {'form':form, 'error':'User or password incorrect'})
+    return render(request, 'login.html', {'form':form })
 
 @login_required
 def Logout(request):
@@ -52,4 +54,6 @@ def Logout(request):
 @login_required
 def Home(request):
 
-    return HttpResponse('Hola Mundo: Home')
+    asignaturas = Cursos.objects.all()
+
+    return render(request, 'home.html', {'asignaturas':asignaturas})

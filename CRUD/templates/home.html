@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_content %}
+
+<title>Cursos</title>
+
+{%endblock%}
+
+{% block container %}
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-8">
+                <table class="table table-light">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">#</th>
+                            <th class="text-center"  scope="col">Creditos</th>
+                            <th class="text-center"  scope="col">Asignatura</th>
+                            <th class="text-center"  scope="col">Costo</th>
+                
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+                        {%for asignatura in asignaturas%}
+                        <tr>
+                            <th class="text-center" scope="row">{{asignatura.pk}}</th>
+                            <td class="text-center">{{asignatura.creditos}}</td>
+                            <td class="text-center">{{asignatura.nombre_asignatura}}</td>
+                            <td class="text-center">{{asignatura.costo}}</td>
+                        </tr>
+                        {%endfor%}
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{%endblock%}
