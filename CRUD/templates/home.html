@@ -11,18 +11,18 @@
 
     {% include 'nav.html' %} 
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-md-center">
-            <div class="col-8">
+            <div class="col-10">
                 <h3 class="text-center mb-4">Listado de Materias</h3>
                 <table class="table table-light table-striped rounded-2">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">#</th>
-                            <th class="text-center"  scope="col">Creditos</th>
-                            <th class="text-center"  scope="col">Asignatura</th>
-                            <th class="text-center"  scope="col">Costo</th>
-                
+                            <th class="text-center" scope="col">Creditos</th>
+                            <th class="text-center" scope="col">Asignatura</th>
+                            <th class="text-center" scope="col">Costo</th>
+                            <th class="text-center" scope="col">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,13 +33,19 @@
                             <td class="text-center">{{asignatura.creditos}}</td>
                             <td class="text-center">{{asignatura.nombre_asignatura}}</td>
                             <td class="text-center">{{asignatura.costo}}</td>
+                            <td>  
+                                <div class="row px-4">
+                                    <button class="btn col-5 bg-success"><a href="{% url 'modificar' %}" class="text-white page-link bg-success border-0">Modificar</a></button>
+                                    <button class="btn col-5 offset-1 bg-danger text-white">Eliminar</button>
+                                </div>
+                            </td>
                         </tr>
                         {%endfor%}
                     
                     </tbody>
                 </table>
 
-                <button class="btn mt-3 col-2 offset-1 bg-primary text-white"><a class="text-white page-link bg-primary border-0" href="{% url 'agregar' %}">Agregar</a></button>
+                <button class="btn mt-3 col-4 offset-4 bg-primary text-white"><a class="text-white page-link bg-primary border-0" href="{% url 'agregar' %}">Agregar</a></button>
             </div>
         </div>
     </div>

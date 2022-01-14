@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head_content %}
+    <title>Modificar</title>
+{% endblock %}
+
+{% block container %}
+    {% include 'nav.html' %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-md-center">
+            <div class="col-6">
+                
+                <form method="POST" action="{% url 'modificar' %}">
+
+                    {% csrf_token %}
+
+                    <h3 class="text-center mt-2 mb-4">Modificar</h3>
+
+                    {{ form.as_p }}
+
+                    <button class="btn btn-block">Modificar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{%endblock%}

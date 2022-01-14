@@ -1,13 +1,16 @@
 #Importaciones de Django
+from typing import Text
 from django.contrib.auth.models import User
+from django.db.models.fields import Field
+from Home.models import Cursos
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import widgets
 
 class SignUpForm(forms.Form):
 
     first_name = forms.CharField(
         max_length=25,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'class':"form-control", 
@@ -19,6 +22,7 @@ class SignUpForm(forms.Form):
 
     last_name = forms.CharField(
         max_length=25,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'class':"form-control", 
@@ -30,6 +34,7 @@ class SignUpForm(forms.Form):
 
     username = forms.CharField(
         max_length=25,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'class':"form-control", 
@@ -41,6 +46,7 @@ class SignUpForm(forms.Form):
 
     email = forms.EmailField(
         max_length=70,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'class':"form-control", 
@@ -52,6 +58,7 @@ class SignUpForm(forms.Form):
 
     password = forms.CharField(
         max_length=25,
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class':"form-control", 
@@ -63,6 +70,7 @@ class SignUpForm(forms.Form):
 
     password_confirmation = forms.CharField(
         max_length=25,
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class':"form-control", 
@@ -105,6 +113,7 @@ class LoginForm(forms.Form):
 
     username = forms.CharField(
         max_length=35,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -115,6 +124,7 @@ class LoginForm(forms.Form):
 
     password = forms.CharField(
         max_length=20,
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
@@ -122,3 +132,70 @@ class LoginForm(forms.Form):
             }
         )
     )
+
+class AgregarCursosForm(forms.Form):
+
+    creditos = forms.IntegerField(
+        label=False,
+        required=True,
+        max_value=5,
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control text-center',
+                'placeholder': 'Creditos',
+            }
+        )
+    )
+
+    nombre_asignatura = forms.CharField(
+        label=False,
+        required=True,
+        max_length=45,
+        widget= forms.TextInput(
+            attrs={
+                'class': 'form-control text-center',
+                'placeholder': 'Asignatura'
+            }
+        )
+    )
+
+    costo = forms.DecimalField(
+        label=False,
+        required=True,
+        max_digits=6,
+        widget=forms.NumberInput(
+            attrs={ 
+                'class': 'form-control text-center',
+                'placeholder': 'Costo'
+            }
+        )
+    )
+
+    def clean(self):
+
+        data = super().clean()
+
+        return data
+
+    def save(self):
+
+        data = self.cleaned_data
+
+        asignatura = Cursos.objects.create(**data)
+
+class ModificarForm(forms.Form):
+
+    datos = Cursos.objects.filter(nombre_asignatura='Programación I')
+
+    """creditos = forms.IntegerField(
+        label=False,
+        required=True,
+        Field= datos, 
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control text-center',
+                'value': 'Hola'
+            }
+            
+        )
+    )"""

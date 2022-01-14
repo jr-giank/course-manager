@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from Home.models import Cursos
 
 #Importaciones locales
-from Home.forms import SignUpForm, LoginForm
+from Home.forms import SignUpForm, LoginForm, AgregarCursosForm, ModificarForm
 
 # Create your views here.
 def Login(request):
@@ -58,6 +58,32 @@ def Home(request):
 
     return render(request, 'home.html', {'asignaturas':asignaturas})
 
+@login_required
 def Agregar(request):
 
-    return render(request, 'agregar.html')
+    if request.method == 'POST':
+        form = AgregarCursosForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AgregarCursosForm()
+
+    return render(request, 'agregar.html', {'form':form})
+
+@login_required
+def Modificar(request):
+
+    data = Cursos.objects.all()
+
+    if request.method == 'POST':
+        form = ModificarForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ModificarForm()
+
+    return render(request, 'modificar.html', {'form':form})
