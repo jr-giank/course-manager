@@ -1,4 +1,5 @@
 #Importaciones de Django
+from turtle import title
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
@@ -73,17 +74,17 @@ def Agregar(request):
     return render(request, 'agregar.html', {'form':form})
 
 @login_required
-def Modificar(request):
+def Modificar(request, id_asignatura):
 
-    data = Cursos.objects.all()
+    asignatura = Cursos.objects.get(id = id_asignatura)
 
     if request.method == 'POST':
-        form = ModificarForm(request.POST)
-
+        form = AgregarCursosForm(request.POST, instance=asignatura)
+        
         if form.is_valid():
             form.save()
             return redirect('home')
     else:
-        form = ModificarForm()
+        form = AgregarCursosForm(initial={'creditos':asignatura.creditos, 'nombre_asignatura':asignatura.nombre_asignatura, 'costo':asignatura.costo})
 
-    return render(request, 'modificar.html', {'form':form})
+    return render(request, 'modificar.html', {'form':form, 'asignatura':asignatura})

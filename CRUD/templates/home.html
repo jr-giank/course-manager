@@ -28,18 +28,18 @@
                     <tbody>
                 
                         {%for asignatura in asignaturas%}
-                        <tr>
-                            <th class="text-center" scope="row">{{asignatura.pk}}</th>
-                            <td class="text-center">{{asignatura.creditos}}</td>
-                            <td class="text-center">{{asignatura.nombre_asignatura}}</td>
-                            <td class="text-center">{{asignatura.costo}}</td>
-                            <td>  
-                                <div class="row px-4">
-                                    <button class="btn col-5 bg-success"><a href="{% url 'modificar' %}" class="text-white page-link bg-success border-0">Modificar</a></button>
-                                    <button class="btn col-5 offset-1 bg-danger text-white">Eliminar</button>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <th class="text-center" scope="row">{{asignatura.id}}</th>
+                                <td class="text-center">{{asignatura.creditos}}</td>
+                                <td class="text-center">{{asignatura.nombre_asignatura}}</td>
+                                <td class="text-center">{{asignatura.costo}}</td>
+                                <td>  
+                                    <div class="row px-4">
+                                        <button class="btn col-5 bg-success"><a href="{% url 'modificar' asignatura.id %}" class="text-white page-link bg-success border-0">Modificar</a></button>
+                                        <button class="btn col-5 offset-1 bg-danger text-white">Eliminar</button>
+                                    </div>
+                                </td>
+                            </tr>
                         {%endfor%}
                     
                     </tbody>

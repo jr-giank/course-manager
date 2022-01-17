@@ -185,17 +185,40 @@ class AgregarCursosForm(forms.Form):
 
 class ModificarForm(forms.Form):
 
-    datos = Cursos.objects.filter(nombre_asignatura='Programación I')
-
-    """creditos = forms.IntegerField(
+    creditos = forms.IntegerField(
         label=False,
         required=True,
-        Field= datos, 
         widget=forms.NumberInput(
             attrs={
                 'class': 'form-control text-center',
-                'value': 'Hola'
+                'placeholder': 'Creditos'
             }
             
         )
-    )"""
+    )
+
+    nombre_asignatura = forms.CharField(
+        label=False,
+        required=True,
+        max_length=45,
+        widget= forms.TextInput(
+            attrs={
+                'class': 'form-control text-center',
+                'placeholder': 'Asignatura'
+            }
+        )
+    )
+
+    costo = forms.DecimalField(
+        label=False,
+        required=True,
+        max_digits=6,
+        widget=forms.NumberInput(
+            attrs={ 
+                'class': 'form-control text-center',
+                'placeholder': 'Costo'
+            }
+        )
+    )
+
+    
