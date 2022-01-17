@@ -7,9 +7,11 @@
 
 {%endblock%}
 
-{% block container %}
-
+{% block nav %}
     {% include 'nav.html' %} 
+{%endblock%}
+
+{% block container %}
 
     <div class="container mt-5 mb-5">
         <div class="row justify-content-md-center">
@@ -36,7 +38,7 @@
                                 <td>  
                                     <div class="row px-4">
                                         <button class="btn col-5 bg-success"><a href="{% url 'modificar' asignatura.id %}" class="text-white page-link bg-success border-0">Modificar</a></button>
-                                        <button class="btn col-5 offset-1 bg-danger text-white">Eliminar</button>
+                                        <button class="btn col-5 offset-1 bg-danger"><a href="{% url 'eliminar' asignatura.id %}" class="text-white page-link bg-danger border-0">Eliminar</a></button>
                                     </div>
                                 </td>
                             </tr>
@@ -45,7 +47,7 @@
                     </tbody>
                 </table>
 
-                <button class="btn mt-3 col-4 offset-4 bg-primary text-white"><a class="text-white page-link bg-primary border-0" href="{% url 'agregar' %}">Agregar</a></button>
+                <button class="btn mt-3 col-4 offset-4 bg-primary text-white"><a class="p-1 text-white page-link bg-primary border-0" href="{% url 'agregar' %}">Agregar</a></button>
             </div>
         </div>
     </div>

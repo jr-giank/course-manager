@@ -29,4 +29,5 @@ urlpatterns = [
     path('logout/', home_views.Logout, name='logout'),
     path('agregar/', home_views.Agregar, name='agregar'),
     path('modificar/<int:id_asignatura>', home_views.Modificar, name='modificar'),
+    path('eliminar/<int:id_asignatura>', home_views.Eliminar, name='eliminar'),
 ]

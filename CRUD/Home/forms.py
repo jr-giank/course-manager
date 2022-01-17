@@ -1,5 +1,6 @@
 #Importaciones de Django
 from typing import Text
+from unicodedata import name
 from django.contrib.auth.models import User
 from django.db.models.fields import Field
 from Home.models import Cursos
@@ -141,7 +142,7 @@ class AgregarCursosForm(forms.Form):
         max_value=5,
         widget=forms.NumberInput(
             attrs={
-                'class': 'form-control text-center',
+                'class': 'form-control text-center text-black',
                 'placeholder': 'Creditos',
             }
         )
@@ -182,43 +183,3 @@ class AgregarCursosForm(forms.Form):
         data = self.cleaned_data
 
         asignatura = Cursos.objects.create(**data)
-
-class ModificarForm(forms.Form):
-
-    creditos = forms.IntegerField(
-        label=False,
-        required=True,
-        widget=forms.NumberInput(
-            attrs={
-                'class': 'form-control text-center',
-                'placeholder': 'Creditos'
-            }
-            
-        )
-    )
-
-    nombre_asignatura = forms.CharField(
-        label=False,
-        required=True,
-        max_length=45,
-        widget= forms.TextInput(
-            attrs={
-                'class': 'form-control text-center',
-                'placeholder': 'Asignatura'
-            }
-        )
-    )
-
-    costo = forms.DecimalField(
-        label=False,
-        required=True,
-        max_digits=6,
-        widget=forms.NumberInput(
-            attrs={ 
-                'class': 'form-control text-center',
-                'placeholder': 'Costo'
-            }
-        )
-    )
-
-    
